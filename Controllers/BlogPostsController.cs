@@ -36,7 +36,6 @@ namespace GBAB_Blog.Controllers
             return View(blogPost);
         }
 
-        [Authorize(Roles="Admin")]
         // GET: BlogPosts/Create
         public ActionResult Create()
         {
