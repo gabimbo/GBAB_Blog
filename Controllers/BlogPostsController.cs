@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,7 +19,7 @@ namespace GBAB_Blog.Controllers
         // GET: BlogPosts
         public ActionResult Index()
         {
-          return View(db.BlogPosts.ToList());
+            return View(db.BlogPosts.ToList());
         }
 
         // GET: BlogPosts/Details/Slug
@@ -36,7 +37,7 @@ namespace GBAB_Blog.Controllers
             return View(blogPost);
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         // GET: BlogPosts/Create
         public ActionResult Create()
         {
@@ -48,11 +49,12 @@ namespace GBAB_Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
                 var Slug = StringUtilities.URLFriendly(blogPost.Title);
+                //var Snip = SnippetStripper.StripTagsCharArray(blogPost.Body);
                 if (String.IsNullOrWhiteSpace(Slug))
                 {
                     ModelState.AddModelError("Title", "Invalid title");
@@ -60,19 +62,21 @@ namespace GBAB_Blog.Controllers
                 }
                 if (db.BlogPosts.Any(p => p.Slug == Slug))
                 {
-                    ModelState.AddModelError("Title", "The title must be unique");
+                    ModelState.AddModelError("Title", "Title must be unique");
                     return View(blogPost);
                 }
-                blogPost.Slug = Slug;
-                blogPost.Created = DateTimeOffset.Now;
 
-                db.BlogPosts.Add(blogPost);
-                db.SaveChanges();
+                if (ImageUploadValidator.IsWEebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    blogPost.MediaURL = "/Uploads/" + fileName;
+                }
                 return RedirectToAction("Index");
             }
-
             return View(blogPost);
         }
+
 
         // GET: BlogPosts/Edit/5
         public ActionResult Edit(int? id)
@@ -94,10 +98,16 @@ namespace GBAB_Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost)
+        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                if (ImageUploadValidator.IsWEebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    blogPost.MediaURL = "/Uploads/" + fileName;
+                }
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -130,7 +140,6 @@ namespace GBAB_Blog.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

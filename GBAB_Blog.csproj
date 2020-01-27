@@ -169,7 +169,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
-    <Compile Include="Controllers\Class1.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -177,26 +176,117 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\StringUtilities.cs" />
+    <Compile Include="Helpers\ImageUploadValidator.cs" />
+    <Compile Include="Migrations\202001262149273_initial-migration-setup.cs" />
+    <Compile Include="Migrations\202001262149273_initial-migration-setup.Designer.cs">
+      <DependentUpon>202001262149273_initial-migration-setup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Content Include="Content\clean-blog.min.css" />
+    <Content Include="Content\Startboostrap.css" />
+    <Content Include="fonts\css\all.css" />
+    <Content Include="fonts\css\all.min.css" />
+    <Content Include="fonts\css\brands.css" />
+    <Content Include="fonts\css\brands.min.css" />
+    <Content Include="fonts\css\fontawesome.css" />
+    <Content Include="fonts\css\fontawesome.min.css" />
+    <Content Include="fonts\css\regular.css" />
+    <Content Include="fonts\css\regular.min.css" />
+    <Content Include="fonts\css\solid.css" />
+    <Content Include="fonts\css\solid.min.css" />
+    <Content Include="fonts\css\svg-with-js.css" />
+    <Content Include="fonts\css\svg-with-js.min.css" />
+    <Content Include="fonts\css\v4-shims.css" />
+    <Content Include="fonts\css\v4-shims.min.css" />
+    <Content Include="fonts\webfonts\fa-brands-400.svg" />
+    <Content Include="fonts\webfonts\fa-regular-400.svg" />
+    <Content Include="fonts\webfonts\fa-solid-900.svg" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\clean-blog.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\about.html" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\contact.html" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\css\clean-blog.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\css\clean-blog.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\gulpfile.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\img\about-bg.jpg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\img\contact-bg.jpg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\img\home-bg.jpg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\img\post-bg.jpg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\img\post-sample-image.jpg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\index.html" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\js\clean-blog.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\js\clean-blog.min.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\js\contact_me.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\js\jqBootstrapValidation.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\mail\contact_me.php" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\post.html" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\all.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\all.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\brands.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\brands.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\fontawesome.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\regular.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\regular.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\solid.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\solid.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\v4-shims.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\jquery\jquery.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\jquery\jquery.min.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\jquery\jquery.slim.js" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
+    <Content Include="Views\ConfirmationSent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap-def.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\bootstrap.def.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\webfonts\fa-brands-400.eot" />
+    <Content Include="fonts\webfonts\fa-brands-400.ttf" />
+    <Content Include="fonts\webfonts\fa-brands-400.woff" />
+    <Content Include="fonts\webfonts\fa-brands-400.woff2" />
+    <Content Include="fonts\webfonts\fa-regular-400.eot" />
+    <Content Include="fonts\webfonts\fa-regular-400.ttf" />
+    <Content Include="fonts\webfonts\fa-regular-400.woff" />
+    <Content Include="fonts\webfonts\fa-regular-400.woff2" />
+    <Content Include="fonts\webfonts\fa-solid-900.eot" />
+    <Content Include="fonts\webfonts\fa-solid-900.ttf" />
+    <Content Include="fonts\webfonts\fa-solid-900.woff" />
+    <Content Include="fonts\webfonts\fa-solid-900.woff2" />
+    <Content Include="Private.Config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -252,9 +342,48 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\LICENSE" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\package-lock.json" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\package.json" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\README.md" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\clean-blog.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_bootstrap-overrides.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_contact.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_footer.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_global.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_masthead.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_mixins.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_navbar.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_post.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\scss\_variables.scss" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\jquery\jquery.min.map" />
+    <Content Include="startbootstrap-clean-blog-gh-pages\vendor\jquery\jquery.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -268,6 +397,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202001262149273_initial-migration-setup.resx">
+      <DependentUpon>202001262149273_initial-migration-setup.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

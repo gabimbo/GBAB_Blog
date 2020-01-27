@@ -30,9 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Body)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.MediaURL)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Published)
         </th>
@@ -57,9 +57,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Body)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MediaURL)
-            </td>
+            @*<td>
+                @if (item.MediaURL != null)
+                {
+                   <img class="img-responsive" src="@item.MediaURL" alt="" />
+                }
+
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Published)
             </td>
